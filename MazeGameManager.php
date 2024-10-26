@@ -3,8 +3,11 @@ class MazeGameManager {
     private static $instance = null;
     private $maze;
 
+    private function __construct(){ }
+    
+
     public static function getInstance(){
-        if(self :: $instance == null){
+        if(self :: $instance === null){
             self::$instance = new MazeGameManager();
         }
         return self::$instance;
