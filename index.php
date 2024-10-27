@@ -1,9 +1,9 @@
 <?php
-require_once 'Maze.php';
-require_once 'Player.php';
-require_once 'Observer.php';
-require_once 'MazeGameManager.php';
-require_once 'MazeFacade.php';
+require_once 'C:\xampp\htdocs\Maze Game\Maze-game\Maze.php';
+require_once 'C:\xampp\htdocs\Maze Game\Maze-game\Player.php';
+require_once 'C:\xampp\htdocs\Maze Game\Maze-game\Observer.php';
+require_once 'C:\xampp\htdocs\Maze Game\Maze-game\MazeGameManager.php';
+require_once 'C:\xampp\htdocs\Maze Game\Maze-game\MazeFcade.php';
 
 //Initialize the game manager (Singleton)
 $gameManager = MazeGameManager::getInstance();
@@ -12,7 +12,9 @@ $gameManager = MazeGameManager::getInstance();
  $mazeBuilder = new SimpleMazeBuilder(); //Or ComplexMazeBuilder
  $MazeFacade = new MazeFacade($mazeBuilder);
  $MazeFacade->createMaze();
- $gameManager->setMaze($maze->getMaze());
+
+ $maze = $mazeBuilder->getMaze();
+ $gameManager->setMaze($maze);
 
 
 
@@ -23,10 +25,10 @@ $gameManager = MazeGameManager::getInstance();
  //The Player is added as an observer (Observer Pattern)
  $mazeSubject = new MazeSubject();
  $playerObserver = new PlayerObserver();
- $maze->addObserver($playerObserver);
+ $mazeSubject->addObserver($playerObserver);
 
  //Notify players of an event
- $maze->notifyObserver ("A wall has collapsed");
+ $mazeSubject->notifyObservers ("A wall has collapsed");
 
  echo "Maze created: " . $gameManager->getMaze() . "\n";
 
