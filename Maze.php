@@ -16,12 +16,30 @@ interface MazeBuilder {
     public function getMaze();
 }
 
+class SimpleMaze extends Maze {
+    public function create() {
+        echo "Creating a simple maze.\n";
+    }
+
+    public function __toString() {
+        return "Simple Maze Object";
+    }
+    
+}
+
+class ComplexMaze extends Maze {
+    public function create() {
+        echo "Creating a complex maze.\n";
+    }
+}
+
+
 class SimpleMazeBuilder implements MazeBuilder {
     private $maze;
     
     public function __construct()
     {
-        $this->maze = "Simple Maze";
+        $this->maze = new SimpleMaze($this);
     }
 
     public function buildRoom() {
@@ -31,7 +49,7 @@ class SimpleMazeBuilder implements MazeBuilder {
 
 
     public function buildWall() {
-        echo "Building a simple wall\n";
+        echo "Building a simple wall.\n";
     }
 
     public function buildDoor() {
@@ -48,7 +66,7 @@ private $maze;
 
 public function __construct()
 {
-    $this->maze = "Complex Maze";
+    $this->maze = new ComplexMaze($this);
 }
 public function buildRoom() {
     echo "Building a complex room.\n";
